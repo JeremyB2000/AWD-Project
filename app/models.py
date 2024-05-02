@@ -1,6 +1,4 @@
-from typing import Optional
-import sqlalchemy as sa
-import sqlalchemy.orm as so
+from typing import List, Optional
 from app import db
 
 # Recipe Dimension Table
