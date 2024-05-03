@@ -1,4 +1,4 @@
-document.getElementById('openFormButton').addEventListener('click', function() {
+document.getElementById('request-btn').addEventListener('click', function() {
     document.getElementById('popupForm').style.display = 'block';
 });
 
