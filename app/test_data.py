@@ -1,0 +1,42 @@
+from app import db
+from app.models import *
+
+recipe1 = RecipeDimension(recipe_name='Pasta Carbonara', category='Dinner', status='Complete', instructions='Cook pasta, fry bacon, mix with eggs and cheese', comment_id=1)
+recipe2 = RecipeDimension(recipe_name='Chicken Curry', category='Dinner', status='Incomplete', instructions='Cook chicken, add curry paste, simmer with coconut milk')
+db.session.add(recipe1)
+db.session.add(recipe2)
+
+ingredient1 = IngredientDimension(ingredient_name='1Spaghetti, eggs, parmesan cheese, bacon, chicken, curry paste, coconut milk')
+ingredient2 = IngredientDimension(ingredient_name='2Spaghetti, eggs, parmesan cheese, bacon, chicken, curry paste, coconut milk')
+ingredient3 = IngredientDimension(ingredient_name='3Spaghetti, eggs, parmesan cheese, bacon, chicken, curry paste, coconut milk')
+ingredient4 = IngredientDimension(ingredient_name='4Bacon')
+ingredient5 = IngredientDimension(ingredient_name='5Spaghetti, eggs, parmesan cheese, bacon, chicken, curry paste, coconut milk')
+ingredient6 = IngredientDimension(ingredient_name='6Spaghetti, eggs, parmesan cheese, bacon, chicken, curry paste, coconut milk')
+ingredient7 = IngredientDimension(ingredient_name='7Coconut Milk')
+db.session.add(ingredient1)
+db.session.add(ingredient2)
+db.session.add(ingredient3)
+db.session.add(ingredient4)
+db.session.add(ingredient5)
+db.session.add(ingredient6)
+db.session.add(ingredient7)
+
+fact1 = CombinedFactTable(recipe_id=1, ingredient_id=1)
+fact2 = CombinedFactTable(recipe_id=1, ingredient_id=2)
+fact3 = CombinedFactTable(recipe_id=1, ingredient_id=3)
+fact4 = CombinedFactTable(recipe_id=1, ingredient_id=4)
+fact5 = CombinedFactTable(recipe_id=2, ingredient_id=5)
+fact6 = CombinedFactTable(recipe_id=2, ingredient_id=6)
+fact7 = CombinedFactTable(recipe_id=2, ingredient_id=7)
+db.session.add(fact1)
+db.session.add(fact2)
+db.session.add(fact3)
+db.session.add(fact4)
+db.session.add(fact5)
+db.session.add(fact6)
+db.session.add(fact7)
+
+Comment1 = CommentDimension(comment = 'step 1 step 3 step 5 blah blah')
+db.session.add(Comment1)
+
+db.session.commit()
