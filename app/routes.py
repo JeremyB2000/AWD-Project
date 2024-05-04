@@ -1,9 +1,11 @@
 from flask import flash, redirect, render_template, request, url_for
 from app import flaskApp, db
+from app.models import RecipeDimension
 
 @flaskApp.route('/')
 def login():
-    return render_template('login.html')
+    recipes = RecipeDimension.query.all()
+    return render_template('cards.html', recipes = recipes)
 
 @flaskApp.route('/main')
 def main():

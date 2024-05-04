@@ -10,38 +10,19 @@
 
 <body>
     <div class="row row-cols-1 row-cols-md-1 g-4">
+        {% for recipe in recipes %}
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <p class="status">Complete</p>
-                    <h5 class="card-title">Fruit Salad</h5>
-                    <p class="category">Breakfast</p>
-                    <p class="username">User123</p>
-                    <p class="ingedients-tex">Ingredients:</p>
-                    <ul>
-                        <li>Apples</li>
-                        <li>Oranges</li>
-                        <li>Pears</li>
-                    </ul>
+                    <p class="status">{{ recipe.status}}</p>
+                    <h5 class="card-title">{{ recipe.recipe_name }}</h5>
+                    <p class="category">{{ recipe.category }}</p>
+                    <p class="username">{{ recipe.user.username }}</p>
+                    <p class="ingedients-tex">Ingredients: {{ recipe.ingredients }}</p>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <p class="status">Incomplete</p>
-                    <h5 class="card-title">Recipe Request</h5>
-                    <p class="category">Breakfast</p>
-                    <p class="username">User456</p>
-                    <p class="ingedients-tex">Ingredients:</p>
-                    <ul>
-                        <li>Milk</li>
-                        <li>Flour</li>
-                        <li>Eggs</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 
 <script src="../static/js/cards.js"></script>
