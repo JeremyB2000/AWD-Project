@@ -1,8 +1,14 @@
-from flask import Flask
-app = Flask(__name__)
+from flask import flash, redirect, render_template, request, url_for
+from app import flaskApp, db
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return "hello"
+@flaskApp.route('/')
+def login():
+    return render_template('login.html')
 
+@flaskApp.route('/main')
+def main():
+    return render_template('main.html')
+
+@flaskApp.route('/account')
+def account():
+    return render_template('account.html')
