@@ -12,13 +12,13 @@
 
 <body>
     <!-- Header with welcome message and link to the main page -->
-    <h1 class="welcome"><a href="main.html">Welcome to OnlyRecipes</a></h1>
+    <h1 class="welcome"><a href="#">Welcome to OnlyRecipes</a></h1>
     <div class="container">
         <!-- Login card containing the form -->
         <div class="login-card">
             <h2>Login</h2>
             <!-- Form for login, with POST method sending data to '/login' endpoint -->
-            <form action="/login" method="post">
+            <form method="Post">
                 <!-- Form group for username -->
                 <div class="form-group">
                     <label for="username">Username:</label>
@@ -31,18 +31,22 @@
                 </div>
                 <!-- Form group for auto-login option -->
                 <div class="form-group">
-                    <input type="checkbox" id="auto-login" name="auto-login">
-                    <label for="auto-login">Auto login</label>
+                    <div>
+                        <label style= "float:left">
+                            <input type="checkbox" id="checkbox" name="checkbox" value="checked">
+                        </label>
+                        <span style = "padding-left: 3px">Auto login</span>
+                    </div>
                 </div>
                 <!-- Submit button for the form -->
                 <div class="form-group">
-                    <input type="submit" value="Login" onclick="location.href='{{ url_for('main') }}'">
+                    <input type="submit" value="Login">
                 </div>
                 <!-- Links for additional actions like registration and password recovery -->
-                <div class="links">
-                    <a href="/register">Sign up</a> | <a href="/forgot-password">Forgot password?</a>
-                </div>
             </form>
+            <div class="links">
+                    <a href="/register">Sign up</a> | <a href="/forgot-password">Forgot password?</a>
+            </div>
         </div>
     </div>
 </body>
