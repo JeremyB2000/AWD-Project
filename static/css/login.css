@@ -7,27 +7,31 @@
 }
 
 .login-card {
-    width: 300px;
+    align-items: center;
+    width: 500px;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
+    align-items: center;
     margin-bottom: 15px;
+    margin-right: 10px;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
+
 }
 
 .form-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 15px;
 }
 
 .form-group input[type="submit"] {
