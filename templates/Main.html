@@ -5,23 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/popupForm.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to OnlyRecipes</h1>
+        {% include 'header.html' %}
+        {% include 'popupForm.html' %}
     </header>
 
     <main>
-        <h2>Our Recipes</h2>
-        <!-- recipes to go here -->
+        {% include 'cards.html' %}
     </main>
-
-    <button id="openFormButton">Request a Recipe</button>
-
-    <!-- include the pop-up form -->
-    {% include 'popupForm.html' %}
-
     <script src="../static/js/main.js"></script>
-    <script src="../static/js/popupForm.js"></script>
 </body>
 </html>
