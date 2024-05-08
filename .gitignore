@@ -4,4 +4,3 @@ env/
 venv
 .idea
 .flaskenv
-table_delete.py
