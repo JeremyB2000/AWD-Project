@@ -41,6 +41,7 @@ def account():
 
 @BP.route("/Main", methods=['GET', 'POST'])
 def main():
+    recipes = RecipeDimension.query.all()
     return render_template("Main.html")
 
 
