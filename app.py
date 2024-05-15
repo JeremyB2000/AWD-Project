@@ -12,7 +12,6 @@ migrate = Migrate(app, db)
 
 app.register_blueprint(auth_bp)
 
-s
 @app.route('/')
 def hello_world():  # put application's code here
     return redirect(url_for("auth.login"))
