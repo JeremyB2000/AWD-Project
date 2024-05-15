@@ -23,8 +23,8 @@ def login():
             if not user:
                 return redirect(url_for('auth.login'))
             if user.password == password:
-                session["username"] = username
-                session["user_id"] = user.user_id
+                session["username"] = username #Do we need this?
+                session["user_id"] = user.user_id #Do we need this?
                 return redirect(url_for('auth.main'))
             else:
                 return redirect(url_for('auth.login'))
@@ -36,7 +36,12 @@ def login():
 @BP.route("/account", methods=['GET', 'POST'])
 def account():
     user_id = session["user_id"]
-    return render_template("account.html")
+    username = db.session.query(AccountDimension.username).filter_by(user_id=user_id).first()
+    username = username[0]
+    email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()
+    email = email[0]
+    recipes = db.session.query(RecipeDimension).filter_by(user_id=user_id).all()
+    return render_template("account.html", username=username, email=email, recipes=recipes)
 
 
 @BP.route("/Main", methods=['GET', 'POST'])
