@@ -7,6 +7,7 @@ class AccountDimension(db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
+    comment = db.relationship('CommentDimension', backref='user')
 
 # Recipe Dimension Table
 class RecipeDimension(db.Model):
@@ -17,12 +18,14 @@ class RecipeDimension(db.Model):
     category = db.Column(db.String(100))
     status = db.Column(db.String(100))
     ingredients = db.Column(db.String(100))
-    user = db.relationship('AccountDimension', backref='account')
+    user = db.relationship('AccountDimension', backref='recipes')
 
 # Comment Dimension Table
 class CommentDimension(db.Model):
     __tablename__ = 'comment'
     comment_id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.column(db.Integer, db.ForeignKey('recipe_dimension.recipe_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('account_dimension.user_id'))
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.recipe_id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     comment = db.Column(db.Text)
+    account = db.relationship('AccountDimension', backref='user_comments')
+    recipe = db.relationship('RecipeDimension', backref='comments')

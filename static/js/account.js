@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var recipeRequestsElement = document.getElementById('recipeRequests');
 
     // add logic to request user data (email/password/username) --> sending a request to server/getting data from a database tbd
-    // leaving in random crap so the iteration works
+    // leaving in random stuff so the iteration works
 
     usernameElement.textContent = 'ExampleUser';
     emailElement.textContent = 'exampleuser@example.com';

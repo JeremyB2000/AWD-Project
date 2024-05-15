@@ -35,3 +35,13 @@
 .row {
     margin-top: 1%;
 }
+
+.comments-section {
+    display: none;
+}
+
+.comment-card {
+    border:  1px solid;
+    margin: 10px;
+    padding: 5px;
+}
