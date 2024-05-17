@@ -1,36 +1,50 @@
-from flask import Blueprint, render_template, request, url_for, redirect, session, jsonify
+from flask import Blueprint, flash, render_template, request, url_for, redirect, session, jsonify
 import json
 from werkzeug.security import check_password_hash
+from flask_login import current_user, login_user, logout_user
 
 from apps.models import AccountDimension, RecipeDimension, CommentDimension
 from apps import db
 from apps.form import LoginForm
+from flask_wtf import FlaskForm
 
 BP = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 @BP.route("/login", methods=['GET', 'POST'])
 def login():
-    if request.method == "GET":
-        return render_template("login.html")
-    else:
-        form = LoginForm(request.form)
-        if form.validate():
-            username = form.username.data
-            password = form.password.data
-            checkbox = request.form.get("checkbox")
-            user = AccountDimension.query.filter_by(username=username).first()
-            if not user:
-                return redirect(url_for('auth.login'))
-            if user.password == password:
-                session["username"] = username #Do we need this?
-                session["user_id"] = user.user_id #Do we need this?
-                return redirect(url_for('auth.main'))
-            else:
-                return redirect(url_for('auth.login'))
-            pass
-        else:
-            return redirect(url_for('auth.login'))
+    #Provide the login page
+    form = LoginForm()
+    if request.method == 'GET':
+        return render_template('login.html', form=form)
+    
+    password = form.password.data
+    username = form.username.data
+    user = AccountDimension.query.get(username)
+    print(user)
+    #Check username
+    if not user:
+        flash('Invalid username or password')
+        print('check username')
+        return render_template('login.html', form=form)
+    
+    #Check password
+    if not user.check_password(password): 
+        flash('Invalid username or password')
+        print('check pword')
+        return render_template('login.html', form=form)
+    
+    #username and password both correct
+    print('correct')
+    login_user(user)
+    return redirect(url_for('auth.main'))
+        
+
+#Connect to a login/logout button at a later point
+@BP.route('/logout')
+def logout():
+        logout_user()
+        return redirect(url_for('auth.main'))
 
 
 @BP.route("/account", methods=['GET', 'POST'])

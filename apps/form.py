@@ -1,8 +1,9 @@
-import wtforms
-from wtforms.validators import Email, DataRequired, Length
+from wtforms import StringField, Field, PasswordField
+from wtforms.validators import DataRequired
+from flask_wtf import FlaskForm
 
 
-class LoginForm(wtforms.Form):
-    username = wtforms.StringField()
-    password = wtforms.PasswordField()
-    checkbox = wtforms.Field()
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    checkbox = Field('Remember me')
