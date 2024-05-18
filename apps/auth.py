@@ -23,8 +23,8 @@ def login():
             if not user:
                 return redirect(url_for('auth.login'))
             if user.password == password:
-                session["username"] = username #Do we need this?
-                session["user_id"] = user.user_id #Do we need this?
+                session["username"] = username
+                session["user_id"] = user.user_id
                 return redirect(url_for('auth.main'))
             else:
                 return redirect(url_for('auth.login'))
@@ -36,11 +36,10 @@ def login():
 @BP.route("/account", methods=['GET', 'POST'])
 def account():
     user_id = session["user_id"]
-    username = db.session.query(AccountDimension.username).filter_by(user_id=user_id).first()
-    username = username[0]
+    username = session["username"]
     email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()
     email = email[0]
-    recipes = db.session.query(RecipeDimension).filter_by(user_id=user_id).all()
+    recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).filter_by(user_id=user_id).all()
     return render_template("account.html", username=username, email=email, recipes=recipes)
 
 
@@ -58,8 +57,8 @@ def request_recipe():
                                    status="Incomplete", user_id=session["user_id"])
     db.session.add(request_data)
     db.session.commit()
-    recipes = RecipeDimension.query.all()
-    return render_template('Main.html', recipes=recipes)
+    recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
+    return redirect(url_for('auth.main'))
 
 @BP.route("/comment", methods=['POST'])
 def post_comment():
