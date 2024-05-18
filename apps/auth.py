@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request, url_for, redirect, session, jsonify
+from flask import Blueprint, render_template, request, url_for, redirect, session, jsonify, flash
 import json
 from werkzeug.security import check_password_hash
 
 from apps.models import AccountDimension, RecipeDimension, CommentDimension
 from apps import db
-from apps.form import LoginForm, SearchForm
+from apps.form import LoginForm, SearchForm, RegistrationForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 BP = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -61,6 +62,22 @@ def request_recipe():
     db.session.commit()
     return redirect(url_for('auth.main'))
 
+@BP.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template("register.html")
+    else:
+        form = RegistrationForm(request.form)
+        print(form.validate())
+        if form.validate():
+            user = AccountDimension(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data))
+            print(user)
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been created! You have been logged in', 'success')
+            return redirect(url_for('auth.login'))
+    return render_template('login.html')
+
 @BP.route("/comment", methods=['POST'])
 def post_comment():
     #Variables
@@ -84,6 +101,7 @@ def post_comment():
     comment_data = {"comment": comment_string, "username": username, "comment_id": comment_id}
     return jsonify(comment_data)
 
+
 @BP.route("/search", methods=['GET', 'POST'])
 def search():
     form = SearchForm()
@@ -102,3 +120,4 @@ def search():
     else:
         print('no')
     
+
