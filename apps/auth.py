@@ -23,7 +23,7 @@ def login():
             user = AccountDimension.query.filter_by(username=username).first()
             if not user:
                 return redirect(url_for('auth.login'))
-            if user.password == password:
+            if check_password_hash(user.password, password):
                 session["username"] = username
                 session["user_id"] = user.user_id
                 return redirect(url_for('auth.main'))
