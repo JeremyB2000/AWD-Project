@@ -60,6 +60,22 @@ def request_recipe():
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
     return redirect(url_for('auth.main'))
 
+@BP.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'GET':
+        return render_template("register.html")
+    else:
+        form = RegistrationForm(request.form)
+        print(form.validate())
+        if form.validate():
+            user = AccountDimension(username=form.username.data, email=form.email.data, password=generate_password_hash(form.password.data))
+            print(user)
+            db.session.add(user)
+            db.session.commit()
+            flash('Your account has been created! You have been logged in', 'success')
+            return redirect(url_for('auth.login'))
+    return render_template('login.html')
+
 @BP.route("/comment", methods=['POST'])
 def post_comment():
     #Variables
