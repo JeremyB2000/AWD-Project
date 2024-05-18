@@ -17,17 +17,17 @@
             </div>
         </div>
     </header>
-    <div class="search">
+    <form class="search" action="{{ url_for('auth.search') }}" method="POST">
+        {{ form.hidden_tag() }}
         <div class="container">
-            <select class="category-select">
-                <option selected>Category</option>
-                <option value="1">Breakfast</option>
-                <option value="2">Lunch</option>
-                <option value="3">Dinner</option>
-            </select>
-            <input type="text" placeholder="Ingredients (eg. eggs, water, toast...)">
-            <button class="button">Search</button>
+                {{ form.recipe_category.label(class="search-label") }}
+                {{ form.recipe_category(class="category-select") }}
+
+                {{ form.search_input.label(class="search-label") }}
+                {{ form.search_input(class="search-input") }}
+
+                {{ form.submit(class="search-button") }}
         </div>
-    </div>
+    </form>
 </body>
 </html>
