@@ -4,7 +4,7 @@ from werkzeug.security import check_password_hash
 
 from apps.models import AccountDimension, RecipeDimension, CommentDimension
 from apps import db
-from apps.form import LoginForm
+from apps.form import LoginForm, SearchForm
 
 BP = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -45,19 +45,20 @@ def account():
 
 @BP.route("/Main", methods=['GET', 'POST'])
 def main():
+    form=SearchForm()
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
-    return render_template("Main.html", recipes=recipes)
+    return render_template("Main.html", recipes=recipes, form=form)
 
 
 @BP.route("/request", methods=['POST'])
 def request_recipe():
     category = request.form.get("mealType")
-    instructions = request.form.get("request")
-    request_data = RecipeDimension(category=category, recipe_name=instructions,
+    ingredients = request.form.get("request")
+    title = request.form.get("request-title")
+    request_data = RecipeDimension(category=category, recipe_name=title, ingredients=ingredients,
                                    status="Incomplete", user_id=session["user_id"])
     db.session.add(request_data)
     db.session.commit()
-    recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
     return redirect(url_for('auth.main'))
 
 @BP.route("/comment", methods=['POST'])
@@ -82,3 +83,22 @@ def post_comment():
     #return the comment, username and comment id
     comment_data = {"comment": comment_string, "username": username, "comment_id": comment_id}
     return jsonify(comment_data)
+
+@BP.route("/search", methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    if form.validate_on_submit():
+        print('yes')
+        search_query = form.search_input.data.split(',')
+        print(search_query)
+        meal_type = form.recipe_category.data.strip()
+        ingredients = [ingredient.strip().lower() for ingredient in search_query]
+        print(meal_type)
+        recipes = db.session.query(RecipeDimension).filter(
+            RecipeDimension.category.ilike(meal_type),  # Filter by meal type
+            *[RecipeDimension.ingredients.ilike(f'%{ingredient}%') for ingredient in ingredients]  # Unpack ingredient filters
+        ).all()
+        return render_template('main.html', recipes=recipes, form=form)
+    else:
+        print('no')
+    
