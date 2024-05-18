@@ -1,5 +1,6 @@
 import wtforms
-from wtforms.validators import Email, DataRequired, Length
+from wtforms.validators import Email, DataRequired, Length, EqualTo, ValidationError
+from apps.models import AccountDimension
 
 
 class LoginForm(wtforms.Form):

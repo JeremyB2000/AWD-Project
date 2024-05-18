@@ -1,10 +1,11 @@
-from flask import Blueprint, render_template, request, url_for, redirect, session, jsonify
+from flask import Blueprint, render_template, request, url_for, redirect, session, jsonify, flash
 import json
 from werkzeug.security import check_password_hash
 
 from apps.models import AccountDimension, RecipeDimension, CommentDimension
 from apps import db
-from apps.form import LoginForm
+from apps.form import LoginForm, RegistrationForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 BP = Blueprint('auth', __name__, url_prefix='/auth')
 
