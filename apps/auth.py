@@ -31,18 +31,21 @@ def login():
         else:
             return redirect(url_for('auth.login'))
 
+@BP.route("/account", methods=['GET', 'POST'])
+def account():
+    user_id = session.get("user_id")
+    if not user_id:
+        flash('You need to log in to access the account page.', 'danger')
+        return redirect(url_for('auth.login'))
 
-@BP.route("/account", methods=['GET', 'POST']) 
-def account(): #Retrieve account information from database and recipes posted by the user
-    user_id = session["user_id"]
-    username = session["username"]
-    email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()
-    email = email[0]
+    username = session.get("username")
+    email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()[0]
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).filter_by(user_id=user_id).all()
     return render_template("account.html", username=username, email=email, recipes=recipes)
 
 
 @BP.route("/Main", methods=['GET', 'POST'])
+
 def main(): #Add searchbar form and all recipe requests to main page.
     form=SearchForm()
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all() #sorted desc to show latest requests at top.
