@@ -20,38 +20,7 @@
         <p>Email: <span id="email">{{ email }}</span></p>
 
         <h3>Your Recipe Requests</h3>
-        <div class="row row-cols-1 row-cols-md-1 g-4">
-            {% for recipe in recipes %}
-            <div class="col">
-                <div class="card">
-                    <div class="card-body">
-                        <p class="status">{{ recipe.status}}</p>
-                        <h5 class="card-title">{{ recipe.recipe_name }}</h5>
-                        <p class="category">{{ recipe.category }}</p>
-                        <p class="username">{{ recipe.user.username }}</p>
-                        <p class="ingedients-text">Ingredients: {{ recipe.ingredients }}</p>
-                        <button class= "comments_btn" onclick="openComments(this)">Comments</button>
-                        <div class="comments-section">
-                            {% for comment in recipe.comments %}
-                            <div class="comment-card" id="{{ comment.comment_id }}">
-                                <h6>{{ comment.user.username }}</h6>
-                                <p>{{ comment.comment }}</p>
-                            </div>
-                            {% endfor %}
-    
-                            <form action="/auth/comment" method="post" id="recipeform-{{ recipe.recipe_id }}">
-                                <p>Add a Recipe</p>
-                                <label>Recipe Instructions:</label>
-                                <textarea id="{{ recipe.recipe_id }}" name="comment" required></textarea>
-                                <input type="button" onclick="newComment('{{ recipe.recipe_id }}')" value="Post"></button>
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
+        {% include 'cards.html' %}
     </main>
 
     <script src="../static/js/account.js"></script>

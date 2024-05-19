@@ -26,9 +26,9 @@
                     <p class="ingredients-text">Ingredients: {{ recipe.ingredients }}</p>
                     <button class="comments_btn" onclick="openComments(this)">Comments</button>
                     <div class="comments-section">
-                        {% for comment in recipe.comment_recipe %}
+                        {% for comment in recipe.comments %}
                         <div class="comment-card" id="{{ comment.comment_id }}">
-                            <h6>{{ comment.comment_user.username }}</h6>
+                            <h6>{{ comment.user.username }}</h6>
                             <p>{{ comment.comment }}</p>
                         </div>
                         {% endfor %}
