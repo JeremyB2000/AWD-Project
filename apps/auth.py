@@ -19,6 +19,7 @@ def login():
         if form.validate():
             username = form.username.data
             password = form.password.data
+            checkbox = request.form.get("checkbox")
             user = AccountDimension.query.filter_by(username=username).first()
             if not user:
                 return redirect(url_for('auth.login'))
@@ -28,8 +29,10 @@ def login():
                 return redirect(url_for('auth.main'))
             else:
                 return redirect(url_for('auth.login'))
+            pass
         else:
             return redirect(url_for('auth.login'))
+
 
 @BP.route("/account", methods=['GET', 'POST'])
 def account():
@@ -43,11 +46,13 @@ def account():
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).filter_by(user_id=user_id).all()
     return render_template("account.html", username=username, email=email, recipes=recipes)
 
-@BP.route("/main", methods=['GET', 'POST'])
+
+@BP.route("/Main", methods=['GET', 'POST'])
 def main():
     form = SearchForm()
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
     return render_template("Main.html", recipes=recipes, form=form)
+
 
 @BP.route("/request", methods=['POST'])
 def request_recipe():
@@ -118,3 +123,4 @@ def search():
     else:
         print('no')
     
+
