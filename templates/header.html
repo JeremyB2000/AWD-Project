@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header Example</title>
     <link rel="stylesheet" href="../static/css/header.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -17,17 +21,18 @@
             </div>
         </div>
     </header>
-    <form class="search" action="{{ url_for('auth.search') }}" method="POST">
-        {{ form.hidden_tag() }}
+    <div class="search">
         <div class="container">
-                {{ form.recipe_category.label(class="search-label") }}
-                {{ form.recipe_category(class="category-select") }}
-
-                {{ form.search_input.label(class="search-label") }}
-                {{ form.search_input(class="search-input") }}
-
-                {{ form.submit(class="search-button") }}
+            <select class="category-select">
+                <option selected>Category</option>
+                <option value="1">Breakfast</option>
+                <option value="2">Lunch</option>
+                <option value="3">Dinner</option>
+            </select>
+            <input type="text" placeholder="Ingredients (e.g., eggs, water, toast...)">
+            <button class="button">Search</button>
         </div>
-    </form>
+    </div>
 </body>
+
 </html>
