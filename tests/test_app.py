@@ -89,19 +89,37 @@ class OnlyRecipesTest(unittest.TestCase):
 
     def test_popup_form(self):
         self.login("test", "admin")  # Use the login method to authenticate
-        self.driver.get(f"{self.base_url}/auth/main")
-        sleep(2)  # Wait for the main page to load
+        self.driver.get(f"{self.base_url}/auth/Main")
+        sleep(5)  # Wait for the main page to load
 
+        print("DEBUG: Page source after navigating to /auth/Main")
         print(self.driver.page_source)  # Print the page source for debugging
 
         try:
-            open_form_button = WebDriverWait(self.driver, 10).until(
+            # Wait for the main page to load completely
+            WebDriverWait(self.driver, 20).until(
+                EC.presence_of_element_located((By.TAG_NAME, "body"))
+            )
+
+            # Print the page source again to confirm the state of the page
+            print("DEBUG: Page source after waiting for body tag")
+            print(self.driver.page_source)
+
+            # Locate the button using the ID request-btn
+            open_form_button = WebDriverWait(self.driver, 30).until(
                 EC.presence_of_element_located((By.ID, "request-btn"))
             )
             self.assertIsNotNone(open_form_button, "Popup form button not found.")
             open_form_button.click()
             sleep(1)
-            form_title_element = WebDriverWait(self.driver, 10).until(
+        
+            # Wait for the popup form to be displayed
+            popup_form = WebDriverWait(self.driver, 20).until(
+                EC.visibility_of_element_located((By.ID, "popupForm"))
+            )
+            self.assertTrue(popup_form.is_displayed(), "Popup form is not displayed.")
+        
+            form_title_element = WebDriverWait(self.driver, 20).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, ".popup-form h2"))
             )
             self.assertIsNotNone(form_title_element, "Form title element not found.")
@@ -109,12 +127,14 @@ class OnlyRecipesTest(unittest.TestCase):
             print(f"DEBUG: form title element text: '{form_title}'")
             self.assertEqual(form_title, "Request a Recipe", f"Expected form title 'Request a Recipe', but got '{form_title}'")
         except TimeoutException:
-            print("DEBUG: request-btn not found within the specified time.")
+            print("DEBUG: Popup form button not found within the specified time.")
+            print(self.driver.page_source)  # Print the page source for additional debugging
             raise
+
 
     def test_recipe_cards(self):
         self.login("test", "admin")  # Use the login method to authenticate
-        self.driver.get(f"{self.base_url}/auth/main")
+        self.driver.get(f"{self.base_url}/auth/Main")
         sleep(2)  # Wait for the main page to load
 
         print(self.driver.page_source)  # Print the page source for debugging
