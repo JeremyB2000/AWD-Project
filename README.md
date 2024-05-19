@@ -1,4 +1,4 @@
-# OnlyRecipes
+# OnlyRecipes Read-Me
 
 ## Overview
 OnlyRecipes is a web application designed as a recipe request forum. Users can create accounts, post and respond to recipe requests, and search for recipes with various filters for meal types.
@@ -44,10 +44,33 @@ OnlyRecipes is a web application designed as a recipe request forum. Users can c
 ├── app.py
 ├── requirements.txt
 └── README.md
+```
 
-**Setup**
-Prerequisites
-Python 3.10
+# Setup
+
+## Prerequisites
+1. alembic (1.13.1+)
+2. blinker (1.8.1+)
+3. click (8.1.7+)
+4. dnspython (2.6.1+)
+5. email_validator (2.1.1+)
+6. Flask (3.0.3+)
+7. Flask-Login (0.6.3+)
+8. Flask-Migrate (4.0.7+)
+9. Flask-SQLAlchemy (3.1.1+)
+10. Flask-WTF (1.2.1+)
+11. greenlet (3.0.3+)
+12. idna (3.7+)
+13. itsdangerous (2.2.0+)
+14. Jinja2 (3.1.3+)
+15. Mako (1.3.3+)
+16. MarkupSafe (2.1.5+)
+17. python-dotenv (1.0.1+)
+18. SQLAlchemy (2.0.29+)
+19. typing_extensions (4.11.0+)
+20. Werkzeug (3.0.2+)
+21. WTForms (3.1.2+)
+
 
 ## Installation
 1. Clone the repository:
@@ -74,29 +97,30 @@ Python 3.10
     python -m unittest discover -s tests
 
 ## Usage
-User Authentication
+
+**User Authentication**
 - Login: Users can log in using their username and password.
 - Registration: New users can create an account.
 
-Recipe Requests
+**Recipe Requests**
 - Users can post new recipe requests specifying meal type, title, and ingredients.
 - Users can respond to recipe requests with their recipes.
 
-Searching Recipes
+**Searching Recipes**
 - Users can search for recipes by specifying meal type and ingredients.
 
-Comments
+**Comments**
 - Users can comment on recipes and view comments left by others.
 
-Account Management
+**Account Management**
 - Users can view and manage their account details.
 - Users can see a list of their recipe requests and update or delete them if necessary.
 
-Contribution
+**Contribution**
 - Feel free to fork this repository, make changes, and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
-License
+## License
 MIT
 
-Contact
+## Contact
 For any questions, please contact [your-email@example.com].
