@@ -1,0 +1,105 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-image: url('../img/brooke-lark-08bOYnH_r_E-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Keeps the background fixed in place when scrolling */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 100vh;
+}
+
+.welcome {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #ffa500;
+    font-family: 'Pacifico', cursive;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+.register-card {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.register-card h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 18px;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.form-group input[type="submit"] {
+    background-color: #f57c00;
+    color: #fff;
+    cursor: pointer;
+    padding: 12px 20px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+    border-radius: 6px;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #ef6c00;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 16px;
+        width: 90%;
+    }
+
+    .register-card h2 {
+        font-size: 22px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .form-group input {
+        font-size: 14px;
+    }
+
+    .form-group input[type="submit"] {
+        font-size: 16px;
+    }
+}

@@ -1,20 +1,58 @@
-<div id="popupForm" class="popup-form">
-    <form action="/auth/request" method="post">
-        <h2>Request a Recipe</h2>
-        <label for="mealType">Meal Type:</label>
-        <select id="mealType" name="mealType" required>
-            <option value="">Select a meal type...</option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            <option value="other">Other</option>
-        </select>
-        <label for="request-title">Request Title:</label>
-        <textarea id="request-title" name="request-title" required></textarea>
+<!DOCTYPE html>
+<html lang="en">
 
-        <label for="request">Ingredients:</label>
-        <textarea id="request" name="request" required></textarea>
-        <input type="submit" value="Post">
-        <button type="button" id="closeFormButton">Close</button>
-    </form>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Recipe</title>
+    <link rel="stylesheet" href="../static/css/popupforum.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="popupForm" class="popup-form">
+        <form action="/auth/request" method="post">
+            <h2>Request a Recipe</h2>
+            <label for="mealType">Meal Type:</label>
+            <select id="mealType" name="mealType" required>
+                <option value="">Select a meal type...</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="request-title">Request Title:</label>
+            <textarea id="request-title" name="request-title" required></textarea>
+    
+            <label for="request">Ingredients:</label>
+            <textarea id="request" name="request" required></textarea>
+            <input type="submit" value="Post">
+            <button type="button" id="closeFormButton">Close</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var popupForm = document.getElementById('popupForm');
+            var closeFormButton = document.getElementById('closeFormButton');
+
+            document.getElementById('request-btn').addEventListener('click', function () {
+                popupForm.style.display = 'block';
+            });
+
+            closeFormButton.addEventListener('click', function () {
+                popupForm.style.display = 'none';
+            });
+
+            window.onclick = function (event) {
+                if (event.target == popupForm) {
+                    popupForm.style.display = 'none';
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

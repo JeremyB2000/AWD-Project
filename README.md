@@ -129,5 +129,11 @@ The following is just a basic outline of how to get the website up and running. 
 - Please nsure all required packages are installed by running:
 - pip install -r requirements.txt
 
+## External sources used:
+### CSS
+- Bootstrap v5.3.3 from [Bootstrap CDN](https://getbootstrap.com/).
+
+- - pictures for login page : https://unsplash.com/s/photos/food
+
 ## License
 MIT
