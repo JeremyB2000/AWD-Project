@@ -19,7 +19,7 @@ class OnlyRecipesTest(unittest.TestCase):
         cls.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         cls.driver.implicitly_wait(10)
         cls.driver.maximize_window()
-        cls.base_url = "http://127.0.0.1:5000"  # Ensure this matches your Flask app's URL
+        cls.base_url = "http://127.0.0.1:5000" 
 
         # Setup Flask app context to access the database
         app = Flask(__name__)
