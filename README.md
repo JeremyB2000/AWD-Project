@@ -1,5 +1,4 @@
-# AWD-Project
-# OnlyRecipes Read-Me
+# AWD-Project: OnlyRecipes Read-Me
 OnlyRecipes is a web application designed as a recipe request forum. Users can create accounts, post and respond to recipe requests, and search for recipes with various filters for meal types.
 
 ## Features
