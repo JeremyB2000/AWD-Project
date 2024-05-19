@@ -1,6 +1,4 @@
 # OnlyRecipes Read-Me
-
-## Overview
 OnlyRecipes is a web application designed as a recipe request forum. Users can create accounts, post and respond to recipe requests, and search for recipes with various filters for meal types.
 
 ## Features
@@ -47,6 +45,7 @@ OnlyRecipes is a web application designed as a recipe request forum. Users can c
 ```
 
 # Setup
+The following is just a basic outline of how to get the website up and running. For the most up-to-date information please check the release notes.
 
 ## Prerequisites
 1. alembic (1.13.1+)
@@ -74,21 +73,21 @@ OnlyRecipes is a web application designed as a recipe request forum. Users can c
 
 ## Installation
 1. Clone the repository:
-    git clone https://github.com/your-repo/onlyrecipes.git #UPDATE WITH LINK PLEASE
-    cd onlyrecipes
-2. Create and activate a virtual environment:
-    python -m venv venv (or use 'python3 -m venv venv' on mac)
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-3. Install the required dependencies
-    pip install -r requirements.txt
-4. Setup the initial database
-    flask db init
-    flask db migrate -m "Initial migration."
-    flask db upgrade
+    - git clone https://github.com/JeremyB2000/AWD-Project.git
+    - cd onlyrecipes
+3. Create and activate a virtual environment:
+    - python -m venv venv (or use 'python3 -m venv venv' on mac)
+    - source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+4. Install the required dependencies
+    - pip install -r requirements.txt
+5. Setup the initial database
+    - flask db init
+    - flask db migrate -m "Initial migration."
+    - flask db upgrade
 
 ## Running the Application
 1. Start the flask server
-    flask run
+    - flask run
 2. Open your web browser and go to http://127.0.0.1:5000 to access OnlyRecipes.
 
 ## Running Tests
@@ -121,6 +120,3 @@ OnlyRecipes is a web application designed as a recipe request forum. Users can c
 
 ## License
 MIT
-
-## Contact
-For any questions, please contact [your-email@example.com].
