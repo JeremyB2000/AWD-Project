@@ -7,7 +7,8 @@ class AccountDimension(db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    comment = db.relationship('CommentDimension', backref='user')
+    comments = db.relationship('CommentDimension', back_populates='user')
+    recipes = db.relationship('RecipeDimension', back_populates='recipe_user')
 
 # Recipe Dimension Table
 class RecipeDimension(db.Model):
@@ -18,7 +19,8 @@ class RecipeDimension(db.Model):
     category = db.Column(db.String(100))
     status = db.Column(db.String(100))
     ingredients = db.Column(db.String(100))
-    user = db.relationship('AccountDimension', backref='recipes')
+    recipe_user = db.relationship('AccountDimension', back_populates='recipes')
+    comments = db.relationship('CommentDimension', back_populates='recipe')
 
 # Comment Dimension Table
 class CommentDimension(db.Model):
@@ -27,5 +29,5 @@ class CommentDimension(db.Model):
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.recipe_id'))
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     comment = db.Column(db.Text)
-    account = db.relationship('AccountDimension', backref='user_comments')
-    recipe = db.relationship('RecipeDimension', backref='comments')
+    user = db.relationship('AccountDimension', back_populates='comments')
+    recipe = db.relationship('RecipeDimension', back_populates='comments')
