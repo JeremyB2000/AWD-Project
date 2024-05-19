@@ -12,9 +12,8 @@
 </head>
 
 <body>
-    <button id="request-btn" class="styled-button">Request a Recipe</button>
     <div id="popupForm" class="popup-form">
-        <form action="/auth/request" method="post" class="form-container">
+        <form action="/auth/request" method="post">
             <h2>Request a Recipe</h2>
             <label for="mealType">Meal Type:</label>
             <select id="mealType" name="mealType" required>
@@ -24,10 +23,13 @@
                 <option value="dinner">Dinner</option>
                 <option value="other">Other</option>
             </select>
-            <label for="request">Your Request:</label>
+            <label for="request-title">Request Title:</label>
+            <textarea id="request-title" name="request-title" required></textarea>
+    
+            <label for="request">Ingredients:</label>
             <textarea id="request" name="request" required></textarea>
-            <input type="submit" value="Post" class="styled-button">
-            <button type="button" id="closeFormButton" class="styled-button">Close</button>
+            <input type="submit" value="Post">
+            <button type="button" id="closeFormButton">Close</button>
         </form>
     </div>
 
