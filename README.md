@@ -63,10 +63,12 @@ The following is just a basic outline of how to get the website up and running. 
 15. Mako (1.3.3+)
 16. MarkupSafe (2.1.5+)
 17. python-dotenv (1.0.1+)
-18. SQLAlchemy (2.0.29+)
-19. typing_extensions (4.11.0+)
-20. Werkzeug (3.0.2+)
-21. WTForms (3.1.2+)
+18. selenium (4.21.0+)
+19. SQLAlchemy (2.0.29+)
+20. typing_extensions (4.11.0+)
+21. webdriver-manager (4.0.1+)
+22. Werkzeug (3.0.2+)
+23. WTForms (3.1.2+)
 
 
 ## Installation
