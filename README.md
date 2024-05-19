@@ -36,8 +36,6 @@ OnlyRecipes is a web application designed as a recipe request forum. Users can c
 ├── tests
 │   ├── __init__.py
 │   └── test_app.py
-├── venv
-├── .flaskenv
 ├── config.py
 ├── app.py
 ├── requirements.txt
