@@ -116,5 +116,18 @@ The following is just a basic outline of how to get the website up and running. 
 **Contribution**
 - Feel free to fork this repository, make changes, and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
 
+## Troubleshooting
+1. Database Issues:
+    If you encounter issues with the database, try resetting it with:
+- flask db downgrade
+- flask db upgrade
+2. Selenium Errors:
+- Ensure that ChromeDriver is installed and is compatible with your installed version of Chrome.
+- Verify that the elements being accessed in the tests have the correct IDs or class names.
+- General Errors: Check the Flask server logs for detailed error messages and stack traces.
+3. Missing Dependencies:
+- Please nsure all required packages are installed by running:
+- pip install -r requirements.txt
+
 ## License
 MIT
