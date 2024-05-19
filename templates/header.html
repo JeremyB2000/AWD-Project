@@ -12,27 +12,29 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="title">OnlyRecipe's</h1>
-            <div class="actions">
-                <button class="button" onclick="location.href='{{ url_for('auth.account') }}'">My Account</button>
-                <button class="button" id="request-btn">Request a Recipe</button>
+    <div class="header-container">
+        <header class="header">
+            <div class="container">
+                <h1 class="title">OnlyRecipe's</h1>
+                <div class="actions">
+                    <button class="button" onclick="location.href='{{ url_for('auth.account') }}'">My Account</button>
+                    <button class="button" id="request-btn">Request a Recipe</button>
+                </div>
             </div>
-        </div>
-    </header>
-    <form class="search" action="{{ url_for('auth.search') }}" method="POST">
-        {{ form.hidden_tag() }}
-        <div class="container">
-                {{ form.recipe_category.label(class="search-label") }}
-                {{ form.recipe_category(class="category-select") }}
+        </header>
+        <form class="search" action="{{ url_for('auth.search') }}" method="POST">
+            {{ form.hidden_tag() }}
+            <div class="container">
+                    {{ form.recipe_category.label(class="search-label") }}
+                    {{ form.recipe_category(class="category-select") }}
 
-                {{ form.search_input.label(class="search-label") }}
-                {{ form.search_input(class="search-input") }}
+                    {{ form.search_input.label(class="search-label") }}
+                    {{ form.search_input(class="search-input") }}
 
-                {{ form.submit(class="search-button") }}
-        </div>
-    </form>
+                    {{ form.submit(class="search-button") }}
+            </div>
+        </form>
+    </div>
 </body>
 
 </html>

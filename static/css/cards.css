@@ -10,6 +10,10 @@ body {
     padding: 0;
 }
 
+.header-container {
+    background-color: white;
+}
+
 .cards-header {
     background-color: rgba(248, 249, 250, 0.8);
     padding: 20px 40px;
@@ -17,12 +21,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-header h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 36px;
-    color: #ffa500;
 }
 
 header .button {
@@ -41,17 +39,13 @@ header .button:hover {
 }
 
 main {
-    margin: 20px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
+    background: rgba(228, 227, 227, 0.9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card {
     background-color: #fff;
     border: 1px solid #ccc;
-    border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 0 1% 1% 1%;
@@ -139,12 +133,13 @@ input[type="button"]:hover {
 /* Responsive design adjustments */
 @media (max-width: 768px) {
     header {
-        padding: 10px 20px;
+        /* padding: 10px 20px; */
     }
 
     main {
         margin: 10px;
         padding: 10px;
+        margin-top: 20vh;
     }
 
     .card {
