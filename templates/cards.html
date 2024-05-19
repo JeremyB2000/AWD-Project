@@ -14,27 +14,25 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <p class="status">{{ recipe.status}}</p>
+                    <p class="status">{{ recipe.status }}</p>
                     <h5 class="card-title">{{ recipe.recipe_name }}</h5>
                     <p class="category">{{ recipe.category }}</p>
-                    <p class="username">{{ recipe.user.username }}</p>
-                    <p class="ingedients-text">Ingredients: {{ recipe.ingredients }}</p>
-                    <button class= "comments_btn" onclick="openComments(this)">Comments</button>
+                    <p class="username">{{ recipe.recipe_user.username }}</p> <!-- Updated relationship -->
+                    <p class="ingredients-text">Ingredients: {{ recipe.ingredients }}</p>
+                    <button class="comments_btn" onclick="openComments(this)">Comments</button>
                     <div class="comments-section">
-                        {% for comment in recipe.comments %}
+                        {% for comment in recipe.comment_recipe %}
                         <div class="comment-card" id="{{ comment.comment_id }}">
-                            <h6>{{ comment.account.username }}</h6>
+                            <h6>{{ comment.comment_user.username }}</h6> <!-- Updated relationship -->
                             <p>{{ comment.comment }}</p>
                         </div>
                         {% endfor %}
-
                         <form action="/auth/comment" method="post" id="recipeform-{{ recipe.recipe_id }}">
                             <p>Add a Recipe</p>
                             <label>Recipe Instructions:</label>
                             <textarea id="{{ recipe.recipe_id }}" name="comment" required></textarea>
-                            <input type="button" onclick="newComment('{{ recipe.recipe_id }}')" value="Post"></button>
+                            <input type="button" onclick="newComment('{{ recipe.recipe_id }}')" value="Post">
                         </form>
-                        
                     </div>
                 </div>
             </div>

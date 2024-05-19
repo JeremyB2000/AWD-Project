@@ -19,7 +19,6 @@ def login():
         if form.validate():
             username = form.username.data
             password = form.password.data
-            checkbox = request.form.get("checkbox")
             user = AccountDimension.query.filter_by(username=username).first()
             if not user:
                 return redirect(url_for('auth.login'))
@@ -29,27 +28,26 @@ def login():
                 return redirect(url_for('auth.main'))
             else:
                 return redirect(url_for('auth.login'))
-            pass
         else:
             return redirect(url_for('auth.login'))
 
-
 @BP.route("/account", methods=['GET', 'POST'])
 def account():
-    user_id = session["user_id"]
-    username = session["username"]
-    email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()
-    email = email[0]
+    user_id = session.get("user_id")
+    if not user_id:
+        flash('You need to log in to access the account page.', 'danger')
+        return redirect(url_for('auth.login'))
+
+    username = session.get("username")
+    email = db.session.query(AccountDimension.email).filter_by(user_id=user_id).first()[0]
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).filter_by(user_id=user_id).all()
     return render_template("account.html", username=username, email=email, recipes=recipes)
 
-
-@BP.route("/Main", methods=['GET', 'POST'])
+@BP.route("/main", methods=['GET', 'POST'])
 def main():
-    form=SearchForm()
+    form = SearchForm()
     recipes = RecipeDimension.query.order_by(RecipeDimension.recipe_id.desc()).all()
     return render_template("Main.html", recipes=recipes, form=form)
-
 
 @BP.route("/request", methods=['POST'])
 def request_recipe():
@@ -120,4 +118,3 @@ def search():
     else:
         print('no')
     
-

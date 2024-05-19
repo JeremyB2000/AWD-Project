@@ -1,0 +1,11 @@
+Flask
+Flask-WTF
+WTForms
+Werkzeug
+Jinja2
+sqlalchemy
+selenium
+webdriver-manager
+flask_sqlalchemy
+flask_migrate
+email_validator
