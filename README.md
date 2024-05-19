@@ -130,10 +130,10 @@ The following is just a basic outline of how to get the website up and running. 
 - pip install -r requirements.txt
 
 ## External sources used:
-### CSS
 - Bootstrap v5.3.3 from [Bootstrap CDN](https://getbootstrap.com/).
-
-- - pictures for login page : https://unsplash.com/s/photos/food
+- pictures for login page : https://unsplash.com/s/photos/food
+- Font:
+https://fonts.googleapis.com/css2family=Dancing+Script&family=Lato:wght@400;700&family=Open+Sans:wght@400;700&family=Pacifico&display=swap
 
 ## License
 MIT
