@@ -59,7 +59,6 @@
         registerButton.style.display='inline-block';
         handleSearchFunction = false;
     }
-    previousWidth = currentWidth; // 更新先前的窗口宽度
-  }
+    previousWidth = currentWidth;
   window.addEventListener('resize', handleWindowResize);
   window.addEventListener('resize', handleWindowinsize);
